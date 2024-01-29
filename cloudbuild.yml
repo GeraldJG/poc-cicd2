@@ -11,13 +11,13 @@ steps:
 
 
  # Set up kubectl
-  - name: 'gcr.io/cloud-builders/kubectl'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        gcloud container clusters get-credentials autopilot-cluster-1 --zone europe-west3-a --project de0360-sbx-gda3sandboxgj-gj
-        kubectl set image deployment/cicd2-app-latest CONTAINER_NAME=europe-west3-docker.pkg.dev/de0360-sbx-gda3sandboxgj-gj/gda3-cicd-docker-repo/cicd2-app:latest
+ - name: 'gcr.io/cloud-builders/kubectl'
+   entrypoint: 'bash'
+   args:
+     - '-c'
+     - |
+       gcloud container clusters get-credentials autopilot-cluster-1 --zone europe-west3-a --project de0360-sbx-gda3sandboxgj-gj
+       kubectl set image deployment/cicd2-app-latest CONTAINER_NAME=europe-west3-docker.pkg.dev/de0360-sbx-gda3sandboxgj-gj/gda3-cicd-docker-repo/cicd2-app:latest
 
 images:
 - 'europe-west3-docker.pkg.dev/de0360-sbx-gda3sandboxgj-gj/gda3-cicd-docker-repo/cicd2-app'
