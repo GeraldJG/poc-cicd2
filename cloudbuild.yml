@@ -22,6 +22,8 @@ steps:
   - 'europe-west3'
   - '--ingress'
   - 'internal'
+  - '--platform=managed'
+  - 'allow-unauthenticated'
 
 images:
 - 'europe-west3-docker.pkg.dev/de0360-sbx-gda3sandboxgj-gj/gda3-cicd-docker-repo/cicd2-app'
