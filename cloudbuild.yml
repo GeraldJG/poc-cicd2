@@ -1,5 +1,5 @@
 steps:
 - name: 'eu.gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/de0360-sbx-gda3sandboxgj-gj/cicd2-app', '.']
+  args: ['build', '-t', 'eu.gcr.io/de0360-sbx-gda3sandboxgj-gj/cicd2-app', '.']
 images:
 - 'eu.gcr.io/de0360-sbx-gda3sandboxgj-gj/cicd2-app'
