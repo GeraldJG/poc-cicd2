@@ -5,21 +5,21 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'europe-west3-docker.pkg.dev/de0360-sbx-gda3sandboxgj-gj/gda3-cicd-docker-repo/cicd2-app', '.']
 
-  # Push the image to Artifact Registry
+# Push the image to Artifact Registry
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'europe-west3-docker.pkg.dev/de0360-sbx-gda3sandboxgj-gj/gda3-cicd-docker-repo/cicd2-app']  
-
-  # test cloud run
+  
+# test cloud run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: gcloud
-    args:
-    - 'run'
-    - 'deploy'
-    - 'cicd2-app'
-    - '--image'
-    - 'europe-west3-docker.pkg.dev/de0360-sbx-gda3sandboxgj-gj/gda3-cicd-docker-repo/cicd2-app'
-    - '--region'
-    - 'europe-west3'
+  entrypoint: gcloud
+  args:
+  - 'run'
+  - 'deploy'
+  - 'cicd2-app'
+  - '--image'
+  - 'europe-west3-docker.pkg.dev/de0360-sbx-gda3sandboxgj-gj/gda3-cicd-docker-repo/cicd2-app'
+  - '--region'
+  - 'europe-west3'
 
 images:
 - 'europe-west3-docker.pkg.dev/de0360-sbx-gda3sandboxgj-gj/gda3-cicd-docker-repo/cicd2-app'
