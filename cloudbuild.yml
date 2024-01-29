@@ -25,8 +25,7 @@ steps:
   - '--platform'
   - 'managed'
   - '--no-allow-unauthenticated'
-  - '--port'
-  - '9000'
+  - '--no-traffic'
 
 images:
 - 'europe-west3-docker.pkg.dev/de0360-sbx-gda3sandboxgj-gj/gda3-cicd-docker-repo/cicd2-app'
