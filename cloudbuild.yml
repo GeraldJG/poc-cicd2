@@ -1,8 +1,13 @@
 steps:
+- name: 'gcr.io/cloud-builders/git'
+  args: ['clone', 'https://github.com/GeraldJG/poc-cicd2.git']
+
 - name: 'eu.gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'eu.gcr.io/de0360-sbx-gda3sandboxgj-gj/cicd2-app', '.']
+
   # Push the image to Artifact Registry
 - name: 'eu.gcr.io/cloud-builders/docker'
   args: ['push', 'eu.gcr.io/de0360-sbx-gda3sandboxgj-gj/cicd2-app']  
+  
 images:
 - 'eu.gcr.io/de0360-sbx-gda3sandboxgj-gj/cicd2-app'
