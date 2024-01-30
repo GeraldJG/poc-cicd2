@@ -18,7 +18,7 @@ steps:
   - docker run -d --net cloudbuild --name kubectl-proxy
       gcr.io/cloud-builders/gcloud compute start-iap-tunnel
       bastion-instance 8080 --local-host-port 0.0.0.0:8080 --zone europe-west3-a &&
-    sleep 5
+    sleep 15
 
 # Set up kubectl (not working, because it is  internal cluster?)
 - name: 'gcr.io/cloud-builders/kubectl'
