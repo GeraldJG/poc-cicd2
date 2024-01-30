@@ -9,14 +9,25 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'europe-west3-docker.pkg.dev/de0360-sbx-gda3sandboxgj-gj/gda3-cicd-docker-repo/cicd2-app']  
 
+# proxy
+- id: kubectl-proxy
+  name: gcr.io/cloud-builders/docker
+  entrypoint: sh
+  args:
+  - -c
+  - docker run -d --net cloudbuild --name kubectl-proxy
+      gcr.io/cloud-builders/gcloud compute start-iap-tunnel
+      bastion-instance 8080 --local-host-port 0.0.0.0:8080 --zone europe-west3-a &&
+    sleep 5
+
 # Set up kubectl (not working, because it is  internal cluster?)
-#- name: 'gcr.io/cloud-builders/kubectl'
-#  entrypoint: 'bash'
-#  args:
-#    - '-c'
-#    - |
-#      gcloud container clusters get-credentials autopilot-cluster-1 --region europe-west3 --project de0360-sbx-gda3sandboxgj-gj
-#      kubectl run cicd2-app-latest --image=europe-west3-docker.pkg.dev/de0360-sbx-gda3sandboxgj-gj/gda3-cicd-docker-repo/cicd2-app:latest
+- name: 'gcr.io/cloud-builders/kubectl'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      gcloud container clusters get-credentials autopilot-cluster-1 --region europe-west3 --project de0360-sbx-gda3sandboxgj-gj --internal-ip
+      HTTPS_PROXY=socks5://kubectl-proxy:8080 kubectl run cicd2-app-latest --image=europe-west3-docker.pkg.dev/de0360-sbx-gda3sandboxgj-gj/gda3-cicd-docker-repo/cicd2-app:latest
 
 # start container as job using  cloud run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
