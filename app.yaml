@@ -1,4 +1,6 @@
 service: default
 runtime: python39
 
+service_account: de0360-sbx-gda3sandboxgj-gj@appspot.gserviceaccount.com
+
 entrypoint: python app.py
