@@ -33,12 +33,8 @@ steps:
   - '--execute-now'
 
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  entrypoint: gcloud
-  args:
-  - 'app'
-  - 'deploy'
-  - '--appyaml'
-  - 'app.yaml'
+  entrypoint: 'bash'
+  args: ['-c', 'gcloud config set app/cloud_build_timeout 1600 && gcloud app deploy']
     
 images:
 - 'europe-west3-docker.pkg.dev/de0360-sbx-gda3sandboxgj-gj/gda3-cicd-docker-repo/cicd2-app'
