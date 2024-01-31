@@ -1,4 +1,4 @@
 service: default
-runtime: python310
+runtime: python39
 
 entrypoint: python app.py
