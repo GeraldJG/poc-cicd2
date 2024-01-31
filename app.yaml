@@ -1,0 +1,4 @@
+service: my-cicd4-test
+runtime: python39
+
+entrypoint: python app.py

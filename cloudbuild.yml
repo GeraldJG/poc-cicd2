@@ -31,5 +31,16 @@ steps:
   - '--region'
   - 'europe-west3'
   - '--execute-now'
+
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args:
+  - 'app'
+  - 'deploy'
+  - '--appyaml'
+  - 'app.yaml'
+  - '--image-url'
+  - 'europe-west3-docker.pkg.dev/de0360-sbx-gda3sandboxgj-gj/gda3-cicd-docker-repo/cicd2-app'
+    
 images:
 - 'europe-west3-docker.pkg.dev/de0360-sbx-gda3sandboxgj-gj/gda3-cicd-docker-repo/cicd2-app'
